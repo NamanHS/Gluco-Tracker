@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "974801102951",
+    "project_id": "gluco-tracker-app-19612",
+    "storage_bucket": "gluco-tracker-app-19612.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974801102951:android:0827d46fec307531718cc2",
+        "android_client_info": {
+          "package_name": "tech.hans.glucotracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974801102951-hi8ub86162drb0d5hou073s5msfa69tk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.hans.glucotracker",
+            "certificate_hash": "4d1fc70abe3c027f6e85452e0460409f51046aec"
+          }
+        },
+        {
+          "client_id": "974801102951-0m400u0ldnfjslbus1fbamus6b01o0js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_ddTP27XCjoeqUueCTB5FQisBUbn0-W0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974801102951-0m400u0ldnfjslbus1fbamus6b01o0js.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
