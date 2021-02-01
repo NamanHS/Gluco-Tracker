@@ -1,9 +1,651 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SelfAssessment">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Please answer all the questions below"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/q1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="What is your AGE GROUP?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            tools:ignore="DuplicateIds"
+            >
+
+            <RadioButton
+                android:id="@+id/q1r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Less than 40 years"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q1r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="Between 40 to 49 years"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+            <RadioButton
+                android:id="@+id/q1r3"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="Between 50 to 59 years"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+            <RadioButton
+                android:id="@+id/q1r4"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="60 years or above"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/q2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="what is your GENDER?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            >
+            <RadioButton
+                android:id="@+id/q2r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q2r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="Female"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience production of abnormally large volumes of dilute urine?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q3r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q3r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience intense thirst despite drinking plenty of fluids?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/q4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/q4r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/q4r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="No"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Have you experienced sudden weight loss?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q5r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q5r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience weakness?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q6r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q6r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience excessive eating or appetite?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q7r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q7r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience blurred vision?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q8"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/q8r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q8r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg8"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience itchy skin?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q9"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q9r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q9r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg9"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience feeling of frustration or anger, often over seemingly small matters?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q10"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q10r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q10r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg10"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experience delayed healing?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q11"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q11r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q11r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg11"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Do you experiece muscle stiffness?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q12"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/q12r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q12r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/q13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg12"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:text="Are you obese?"
+            android:textColor="@color/colorAccent" />
+
+        <RadioGroup
+            android:id="@+id/rg13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q13"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center">
+            <RadioButton
+                android:id="@+id/q13r1"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/q13r2"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="No"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg13"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/checkResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg13"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/monda_bold"
+            android:gravity="center"
+            android:onClick="onCheckResult"
+            android:text=" Check Result "
+            android:textColor="@color/colorPrimary" />
+
+
+
+
+    </RelativeLayout>
+</ScrollView>
