@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "tech.hans.glucotracker"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -35,7 +35,6 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.android.volley:volley:1.1.1'
-
 
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.android.material:material:1.0.0'
