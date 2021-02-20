@@ -26,201 +26,213 @@
         android:columnCount="2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/enterReading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="fill"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            android:layout_gravity="fill"
             android:layout_margin="10dp"
-            >
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_gravity="center_vertical|center_horizontal"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/edit" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enter Reading"
                     android:fontFamily="@font/monda_bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAlignment="center"/>
+                    android:text="Enter Reading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/viewReading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
-            android:layout_column="1"
-            android:layout_gravity="fill"
             android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            android:layout_gravity="fill"
             android:layout_margin="10dp"
-            >
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_gravity="center_vertical|center_horizontal"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/document" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Readings"
                     android:fontFamily="@font/monda_bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAlignment="center"/>
+                    android:text="View Readings"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/viewGraph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:layout_column="0"
-            android:layout_gravity="fill"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            android:layout_gravity="fill"
             android:layout_margin="10dp"
-            >
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_gravity="center_vertical|center_horizontal"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/barchart" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Graph"
                     android:fontFamily="@font/monda_bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAlignment="center"/>
+                    android:text="View Graph"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/generateReport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:layout_column="1"
-            android:layout_gravity="fill"
             android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            android:layout_gravity="fill"
             android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
 
-            >
+            app:cardElevation="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_gravity="center_vertical|center_horizontal"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/medicalrecord" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Report"
                     android:fontFamily="@font/monda_bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAlignment="center"/>
+                    android:text="Generate Report"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/meditateView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
-            android:layout_column="0"
-            android:layout_gravity="fill"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            android:layout_gravity="fill"
             android:layout_margin="10dp"
-            >
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_gravity="center_vertical|center_horizontal"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/meditation" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Meditate"
                     android:fontFamily="@font/monda_bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAlignment="center"/>
+                    android:text="Meditate"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/readArticles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
-            android:layout_column="1"
-            android:layout_gravity="fill"
             android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            android:layout_gravity="fill"
             android:layout_margin="10dp"
-            >
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_gravity="center_vertical|center_horizontal"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/newspaper" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Read Articles"
                     android:fontFamily="@font/monda_bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAlignment="center"/>
+                    android:text="Read Articles"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

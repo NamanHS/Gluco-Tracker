@@ -237,6 +237,12 @@ public class SelfAssessment extends AppCompatActivity {
         }
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finishAffinity();
+    }
+
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 1);

@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Resulter"></activity>
+        <activity android:name=".readArticles"></activity>
+        <activity android:name=".meditateView" />
+        <activity android:name=".generateReport" />
+        <activity android:name=".viewGraph" />
+        <activity android:name=".viewReading" />
+        <activity android:name=".enterReading" />
+        <activity android:name=".Resulter" />
         <activity android:name=".SelfAssessment" />
         <activity android:name=".RecoverPassword" />
         <activity android:name=".HomePage" />
