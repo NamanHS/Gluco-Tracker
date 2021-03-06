@@ -23,6 +23,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,6 +37,10 @@ import java.util.Date;
 
 public class enterReading extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    String doctor_Email, family_Email,patientName;
 
     GlucoReading glucoReading;
     FirebaseUser firebaseUser;
@@ -61,7 +70,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
         calendericon = (ImageView) findViewById(R.id.calenderIcon);
         calendericon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 DialogFragment datepicker = new DatePickerFragment();
                 datepicker.show(getSupportFragmentManager(), "Calender");
             }
@@ -78,6 +87,44 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
         assert firebaseUser != null;
         regNo = firebaseUser.getUid().toString();
 
+      //  JavaMailAPI javaMailAPI = new JavaMailAPI(this,"namansanura4zn@gmail.com","Alert","message gluco");
+      //  javaMailAPI.execute();
+
+        database = FirebaseDatabase.getInstance("https://gluco-tracker-app-default-rtdb.firebaseio.com/");
+        myRef = database.getReference("UserData");
+
+
+        //  fetch doctor email id
+        myRef.child(regNo).child("doc_email").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                doctor_Email = dataSnapshot.getValue().toString();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        // fetching user / patient name
+        myRef.child(regNo).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                patientName = dataSnapshot.getValue().toString();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+        //  fetch family email id
+        myRef.child(regNo).child("fam_email").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                family_Email = dataSnapshot.getValue().toString();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     @Override
@@ -106,7 +153,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
 
         //meal interval
         if(interval.getCheckedRadioButtonId() == -1){
-            Toast.makeText(getApplicationContext(),"Please select INTERVAL\n Before Meal or After Meal",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Please select INTERVAL\nBefore Meal or After Meal",Toast.LENGTH_SHORT).show();
             return;
         }else if(interval.getCheckedRadioButtonId() == R.id.beforeMeal){
             mealInterval = "Before Meal";
@@ -144,7 +191,6 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
     }
 
 
-
     public void addingToDataBase(){
         if(haveNetworkConnection()){
             db.collection("GlucoReadingDB").add(glucoReading)
@@ -164,12 +210,63 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
                             toast.show();
                         }
                     });
+            String alertmsg = "",message = "";
+            boolean outOfRange = false;
+
+            if(glucoReadingEntered>=10 && glucoReadingEntered <=39 && mealInterval.equals("Before Meal")){
+                alertmsg ="Very Low Glucose Level";
+                message = patientName +" is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nBefore Meal\nOn " + date;
+                outOfRange = true;
+            }
+            else if(glucoReadingEntered>=40 && glucoReadingEntered <=69 && mealInterval.equals("Before Meal")){
+                alertmsg ="Low Glucose Level";
+                message = patientName +" is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nBefore Meal\nOn " + date;
+                outOfRange = true;
+            }
+            else if(glucoReadingEntered>=70 && glucoReadingEntered <=130 && mealInterval.equals("Before Meal")){
+                outOfRange = false;
+            }else if(glucoReadingEntered>130 && glucoReadingEntered<180 && mealInterval.equals("Before Meal")){
+                alertmsg ="High Glucose Level";
+                message = patientName + " is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nBefore Meal\nOn " + date;
+                outOfRange = true;
+            }else if(glucoReadingEntered>=180&& mealInterval.equals("Before Meal")){
+                alertmsg = "Very High Glucose Level";
+                message = patientName + " is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nBefore Meal\nOn " + date;
+                outOfRange = true;
+            }
+            else if(glucoReadingEntered<=69 && mealInterval.equals("After Meal")){
+                alertmsg ="Very Low Glucose Level";
+                message = patientName + " is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nAfter Meal\nOn " + date;
+                outOfRange = true;
+            }
+            else if(glucoReadingEntered>=70 && glucoReadingEntered<180 && mealInterval.equals("After Meal")){
+                outOfRange = false;
+            }else if(glucoReadingEntered>=180 && glucoReadingEntered<=239 && mealInterval.equals("After Meal")){
+                alertmsg = "High Glucose Level";
+                message = patientName + " is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nAfter Meal\nOn " + date;
+                outOfRange = true;
+            }else if(glucoReadingEntered>=240 && mealInterval.equals("After Meal")){
+                alertmsg = "Very High Glucose Reading";
+                message = patientName + " is tested with Glucose Level "+ glucoReadingEntered + " mg/dL\nAfter Meal\nOn " + date;
+                outOfRange = true;
+            }
+
+            if(outOfRange){
+                JavaMailAPI sendToDoctor = new JavaMailAPI(this,doctor_Email,alertmsg,message);
+                sendToDoctor.execute();
+                JavaMailAPI sendToFamily = new JavaMailAPI(this,family_Email,alertmsg,message);
+                sendToFamily.execute();
+            }
+           /* JavaMailAPI sendToDoctor = new JavaMailAPI(this,doctor_Email,"Alert","message gluco");
+            sendToDoctor.execute();
+
+            JavaMailAPI sendToFamily = new JavaMailAPI(this,family_Email,"Alert","message gluco");
+            sendToFamily.execute();*/
+
         }else{
             Toast toast = Toast.makeText(getApplicationContext(), "YOU ARE NOT CONNECTED TO INTERNET", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
         }
-
-
     }
 }
