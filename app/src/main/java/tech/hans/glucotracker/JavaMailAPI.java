@@ -25,14 +25,21 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
     private String mSubject;
     private String mMessage;
 
+    private String sendingEmail;
+    private String sendingPassword;
+
+
     private ProgressDialog mProgressDialog;
 
     //Constructor
-    public JavaMailAPI(Context mContext, String mEmail, String mSubject, String mMessage) {
+    public JavaMailAPI(Context mContext, String mEmail, String mSubject, String mMessage, String sendingEmail, String sendingPassword) {
         //Variables
         this.mEmail = mEmail;
         this.mSubject = mSubject;
         this.mMessage = mMessage;
+
+        this.sendingEmail = sendingEmail;
+        this.sendingPassword = sendingPassword;
     }
 
     @Override
@@ -71,7 +78,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(Utils.EMAIL, Utils.PASSWORD);
+                        return new PasswordAuthentication(sendingEmail, sendingPassword);
                     }
                 });
 
@@ -80,7 +87,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             MimeMessage mm = new MimeMessage(mSession);
 
             //Setting sender address
-            mm.setFrom(new InternetAddress(Utils.EMAIL));
+            mm.setFrom(new InternetAddress(sendingEmail));
             //Adding receiver
             mm.addRecipient(Message.RecipientType.TO, new InternetAddress(mEmail));
             //Adding subject

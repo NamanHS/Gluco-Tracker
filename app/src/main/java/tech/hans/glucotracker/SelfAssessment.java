@@ -26,6 +26,9 @@ import java.util.LinkedHashMap;
 
 public class SelfAssessment extends AppCompatActivity {
 
+    public int count = 0;
+    String tag = "";
+
     RadioGroup rg1, rg2, rg3, rg4, rg5, rg6, rg7, rg8, rg9, rg10, rg11, rg12, rg13;
 
     RequestQueue req;
@@ -95,6 +98,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v1 = "50-59";
             }else{
                 v1 = "60 or above";
+                tag = "aged";
             }
 
             int b2 = rg2.getCheckedRadioButtonId();
@@ -109,6 +113,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v3 = "Yes";
             }else{
                 v3 = "No";
+                count++;
             }
 
             int b4 = rg4.getCheckedRadioButtonId();
@@ -116,6 +121,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v4 = "Yes";
             }else{
                 v4 = "No";
+                count++;
             }
 
             int b5 = rg5.getCheckedRadioButtonId();
@@ -123,6 +129,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v5 = "Yes";
             }else{
                 v5 = "No";
+                count++;
             }
 
             int b6 = rg6.getCheckedRadioButtonId();
@@ -130,6 +137,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v6 = "Yes";
             }else{
                 v6 = "No";
+                count++;
             }
 
             int b7 = rg7.getCheckedRadioButtonId();
@@ -137,6 +145,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v7 = "Yes";
             }else{
                 v7 = "No";
+                count++;
             }
 
             int b8 = rg8.getCheckedRadioButtonId();
@@ -144,6 +153,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v8 = "Yes";
             }else{
                 v8 = "No";
+                count++;
             }
 
             int b9 = rg9.getCheckedRadioButtonId();
@@ -151,6 +161,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v9 = "Yes";
             }else{
                 v9 = "No";
+                count++;
             }
 
             int b10 = rg10.getCheckedRadioButtonId();
@@ -158,6 +169,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v10 = "Yes";
             }else{
                 v10 = "No";
+                count++;
             }
 
             int b11 = rg11.getCheckedRadioButtonId();
@@ -165,6 +177,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v11 = "Yes";
             }else{
                 v11 = "No";
+                count++;
             }
 
             int b12 = rg12.getCheckedRadioButtonId();
@@ -172,6 +185,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v12 = "Yes";
             }else{
                 v12 = "No";
+                count++;
             }
 
             int b13 = rg13.getCheckedRadioButtonId();
@@ -179,6 +193,7 @@ public class SelfAssessment extends AppCompatActivity {
                 v13 = "Yes";
             }else{
                 v13 = "No";
+                count++;
             }
 
             LinkedHashMap<String,String> map = new LinkedHashMap<String, String>();
@@ -210,6 +225,8 @@ public class SelfAssessment extends AppCompatActivity {
                         Log.i("success--->",output);
                         Intent intent = new Intent(getApplicationContext(),Resulter.class);
                         intent.putExtra("output",output);
+                        intent.putExtra("count",count);
+                        intent.putExtra("tag",tag);
                         prog.setVisibility(View.GONE);
                         startActivity(intent);
                     } catch (JSONException e) {

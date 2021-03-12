@@ -21,13 +21,6 @@ public class GlucoReading {
         this.date = date;
     }
 
-    public GlucoReading(String regNo, String interval, int glucoReadingEntered, Date date){
-        this.regNo = regNo;
-        this.interval = interval;
-        this.glucoReadingEntered = glucoReadingEntered;
-        this.optionalNotes = "No Notes Added";
-        this.date = date;
-    }
     public String getRegNo(){return regNo;}
     public String getInterval(){return interval;}
     public String getOptionalNotes(){return optionalNotes;}

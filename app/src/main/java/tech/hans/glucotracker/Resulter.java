@@ -23,17 +23,30 @@ public class Resulter extends AppCompatActivity {
         outputText.setVisibility(View.GONE);
         Intent intent = getIntent();
         String output = intent.getStringExtra("output");
+        int count = intent.getIntExtra("count",0);
+        String tag = intent.getStringExtra("tag");
 
-        if(output.equals("Positive")){
-            outputText.setText("BASED ON YOUR CURRENT SYMPTOMS,\n\nYOU ARE AT RISK OF DEVELOPING DIABETES\n\nPLEASE CONSULT A DOCTOR AND GET YOURSELF A CHECK UP FOR DIABETES");
+
+
+        if(!tag.equals("aged")){
+
+
+            assert output != null;
+            if (output.equals("Positive")) {
+                outputText.setText("BASED ON YOUR CURRENT SYMPTOMS,\n\nYOU ARE AT RISK OF DEVELOPING DIABETES\n\nPLEASE CONSULT A DOCTOR AND GET YOURSELF A CHECK UP FOR DIABETES");
+                outputText.setVisibility(View.VISIBLE);
+            } else if (output.equals("Negative")) {
+                outputText.setText("BASED ON YOUR CURRENT SYMPTOMS,\n\nYOU ARE NOT AT A RISK OF DEVELOPING DIABETES\n\nHOWEVER, HEALTHY LIFESTYLE SHOULD BE FOLLOWED TO KEEP DIABETES AT A BAY");
+                outputText.setVisibility(View.VISIBLE);
+            }
+
+        }else if(count>0 && count<11){
+            outputText.setText("BASED ON YOUR AGE AND CURRENT SYMPTOMS,\n\nYOU ARE AT RISK OF DEVELOPING DIABETES\n\nPLEASE CONSULT A DOCTOR AND GET YOURSELF A CHECK UP FOR DIABETES");
             outputText.setVisibility(View.VISIBLE);
-        }else if(output.equals("Negative")){
-            outputText.setText("BASED ON YOUR CURRENT SYMPTOMS,\n\nYOU ARE NOT AT A RISK OF DEVELOPING DIABETES\n\nHOWEVER, HEALTHY LIFESTYLE SHOULD BE FOLLOWED TO KEEP DIABETES AT A BAY");
+        }else if(count == 11){
+            outputText.setText("BASED ON YOUR AGE,\n\nWe RECOMMEND YOU TO\n\nPLEASE CONSULT A DOCTOR AND GET YOURSELF A CHECK UP FOR DIABETES");
             outputText.setVisibility(View.VISIBLE);
         }
-
-
-
     }
 
     public void onPause() {
