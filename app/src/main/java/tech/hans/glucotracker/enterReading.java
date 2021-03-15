@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -31,11 +33,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class enterReading extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -57,14 +62,23 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
     private EditText readingEntered, optionalNotes;
     private RadioGroup interval;
 
+    String regNoSent,glucoSent,intervalSent,notesSent,activityName;
+    long dateSent;
     int glucoReadingEntered;
     String mealInterval,mealOptionalNotes;
     Date date;
 
+
+    GlucoReading toUpdateGluco;
+    String DocToUpdateID;
+    Boolean flag = false;
+    GlucoReading finalUpdatedDoc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_reading);
+
+
         dateSelected = (TextView) findViewById(R.id.dateSelected);
         Calendar calendar = Calendar.getInstance();
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
@@ -89,12 +103,42 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
         interval = (RadioGroup) findViewById(R.id.interval);
 
 
+        Intent intent = getIntent();
+        activityName = intent.getStringExtra("activityName");
+        if(activityName != null && activityName.equals("viewReading")) {
+
+            enterReading.setText(" UPDATE ");
+            DocToUpdateID = intent.getStringExtra("DocRef");
+            toUpdateGluco = (GlucoReading) intent.getSerializableExtra("toUpdateGluco");
+            assert toUpdateGluco != null;
+            readingEntered.setText(Integer.toString(toUpdateGluco.getGlucoReadingEntered()));
+            if(!toUpdateGluco.getOptionalNotes().equals("No Notes Added")){
+                optionalNotes.setText(toUpdateGluco.getOptionalNotes());
+            }
+            if(toUpdateGluco.getInterval().equals("Before Meal")){
+                interval.check(R.id.beforeMeal);
+            }else{
+                interval.check(R.id.afterMeal);
+            }
+            Calendar calendarTemp = Calendar.getInstance();
+            currentDate = DateFormat.getDateInstance().format(toUpdateGluco.getDate());
+            calendar.setTime(toUpdateGluco.getDate());
+            date = calendar.getTime();
+            dateSelected.setText(currentDate);
+            Log.i("heyy",currentDate.toString());
+
+
+
+            flag = true;
+
+        }
+
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         assert firebaseUser != null;
         regNo = firebaseUser.getUid().toString();
 
-        //  JavaMailAPI javaMailAPI = new JavaMailAPI(this,"namansanura4zn@gmail.com","Alert","message gluco");
-        //  javaMailAPI.execute();
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://gluco-tracker-app-default-rtdb.firebaseio.com/");
         DatabaseReference myRef = database.getReference("UserData");
@@ -228,24 +272,45 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
 
     public void addingToDataBase(){
         if(haveNetworkConnection()){
-            db.collection("GlucoReadingDB").add(glucoReading)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "SUCCESSFULLY ADDED GLUCOSE READING", Toast.LENGTH_SHORT);
-                            toast.setGravity(Gravity.CENTER,0,0);
-                            mp.start();
-                            toast.show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR", Toast.LENGTH_SHORT);
-                            toast.setGravity(Gravity.CENTER,0,0);
-                            toast.show();
-                        }
-                    });
+
+            if(flag){
+                db.collection("GlucoReadingDB").document(DocToUpdateID).set(glucoReading).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "SUCCESSFULLY UPDATED GLUCOSE READING", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        mp.start();
+                        toast.show();
+                        Intent intent = new Intent(enterReading.this, viewReading.class);
+                        intent.putExtra("activityName","updated");
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+            }
+            else {
+                db.collection("GlucoReadingDB").add(glucoReading)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "SUCCESSFULLY ADDED GLUCOSE READING", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                mp.start();
+                                toast.show();
+                                Intent intent = new Intent(enterReading.this, viewReading.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                            }
+                        });
+            }
             String alertmsg = "", message = "";
             boolean outOfRange = false;
             if (glucoReadingEntered >= 10 && glucoReadingEntered <= 39 && mealInterval.equals("Before Meal")) {
@@ -294,5 +359,8 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
             toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
         }
+
+
+
     }
 }

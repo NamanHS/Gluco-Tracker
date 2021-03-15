@@ -1,14 +1,11 @@
 package tech.hans.glucotracker;
 
-import android.widget.EditText;
-import android.widget.RadioGroup;
-
+import java.io.Serializable;
 import java.util.Date;
 
-public class GlucoReading {
+public class GlucoReading implements Serializable{
     String regNo,interval,optionalNotes;
     int glucoReadingEntered;
-
     Date date;
 
     public GlucoReading(){}

@@ -152,6 +152,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
 
     public void enterReadingActivity(){
         if(haveNetworkConnection()){
+            Intent intent = new Intent(HomePage.this,enterReading.class);
+            intent.putExtra("activityName","HomePage");
             startActivity(new Intent(this,enterReading.class));
         }else{
             Toast toast = Toast.makeText(getApplicationContext(), "YOU ARE NOT CONNECTED TO INTERNET\nCONNECT TO INTERNET TO USE APPLICATION", Toast.LENGTH_LONG);
@@ -159,4 +161,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             toast.show();
         }
     }
+
+
+
+
+
 }
