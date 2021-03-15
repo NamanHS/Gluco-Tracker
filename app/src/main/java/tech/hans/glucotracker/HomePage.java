@@ -113,22 +113,22 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.enterReading:
-                enterReadingActivity();
+                enterActivity("enterReading");
                 break;
             case R.id.viewReading:
-                startActivity(new Intent(this,viewReading.class));
+                enterActivity("viewReading");
                 break;
             case R.id.viewGraph:
-                startActivity(new Intent(this,viewGraph.class));
+                enterActivity("viewGraph");
                 break;
             case R.id.generateReport:
-                startActivity(new Intent(this,generateReport.class));
+                enterActivity("generateReport");
                 break;
             case R.id.meditateView:
-                startActivity(new Intent(this,meditateView.class));
+                enterActivity("meditateView");
                 break;
             case R.id.readArticles:
-                startActivity(new Intent(this,readArticles.class));
+                enterActivity("readArticles");
                 break;
         }
     }
@@ -150,13 +150,26 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         return haveConnectedWifi || haveConnectedMobile;
     }
 
-    public void enterReadingActivity(){
+    public void enterActivity(String activityName){
         if(haveNetworkConnection()){
-            Intent intent = new Intent(HomePage.this,enterReading.class);
-            intent.putExtra("activityName","HomePage");
-            startActivity(new Intent(this,enterReading.class));
+            if(activityName.equals("enterReading")){
+                Intent intent = new Intent(HomePage.this,enterReading.class);
+                intent.putExtra("activityName","HomePage");
+                startActivity(new Intent(this,enterReading.class));
+            }else if(activityName.equals("viewReading")){
+                startActivity(new Intent(this,viewReading.class));
+            }else if(activityName.equals("viewGraph")){
+                startActivity(new Intent(this,viewGraph.class));
+            }else if(activityName.equals("generateReport")){
+                startActivity(new Intent(this,generateReport.class));
+            }else if(activityName.equals("meditateView")){
+                startActivity(new Intent(this,meditateView.class));
+            }else if(activityName.equals("readArticles")){
+                startActivity(new Intent(this,readArticles.class));
+            }
+
         }else{
-            Toast toast = Toast.makeText(getApplicationContext(), "YOU ARE NOT CONNECTED TO INTERNET\nCONNECT TO INTERNET TO USE APPLICATION", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(), "YOU ARE NOT CONNECTED TO INTERNET\n\nCONNECT TO INTERNET TO USE APPLICATION", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
         }
