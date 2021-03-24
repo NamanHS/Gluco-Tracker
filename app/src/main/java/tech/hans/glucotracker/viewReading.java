@@ -113,7 +113,7 @@ public class viewReading extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction){
 
-                new AlertDialog.Builder(viewReading.this)
+                new AlertDialog.Builder(viewReading.this).setCancelable(false)
                         .setTitle("ARE YOU SURE YOU WANT TO DELETE ?")
                         .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                             @Override
@@ -173,7 +173,7 @@ public class viewReading extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction){
 
-                new AlertDialog.Builder(viewReading.this)
+                new AlertDialog.Builder(viewReading.this).setCancelable(false)
                         .setTitle("ARE YOU SURE YOU WANT TO EDIT ?")
                         .setPositiveButton("EDIT", new DialogInterface.OnClickListener() {
                             @Override

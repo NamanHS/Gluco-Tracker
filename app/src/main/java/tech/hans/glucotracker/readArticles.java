@@ -89,7 +89,7 @@ public class readArticles extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction){
 
-                new AlertDialog.Builder(readArticles.this)
+                new AlertDialog.Builder(readArticles.this).setCancelable(false)
                         .setTitle("ARE YOU SURE YOU WANT TO VISIT ?")
                         .setPositiveButton("VISIT", new DialogInterface.OnClickListener() {
                             @SuppressLint("SetJavaScriptEnabled")

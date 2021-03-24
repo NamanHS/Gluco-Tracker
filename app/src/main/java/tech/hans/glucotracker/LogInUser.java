@@ -26,10 +26,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LogInUser extends AppCompatActivity implements View.OnClickListener {
     
-    Button login;
-    ProgressBar loginLoading;
-    TextView forgotPassword, signup;
-    EditText loginEmail, loginPassword;
+    private Button login;
+    private ProgressBar loginLoading;
+    private TextView forgotPassword, signup;
+    private EditText loginEmail, loginPassword;
     private FirebaseAuth mAuth;
 
     @Override
@@ -110,7 +110,11 @@ public class LogInUser extends AppCompatActivity implements View.OnClickListener
                             startActivity(new Intent(getApplicationContext(),HomePage.class));
                             finishAffinity();
                         }else{
-                            Toast.makeText(getApplicationContext(),"Verify email",Toast.LENGTH_LONG).show();
+                            loginLoading.setVisibility(View.GONE);
+                            String msg = "<Big><b><br><br><br><br><br><br><br><br><br><br>PLEASE VERIFY YOUR EMAIL ID<br><br>EMAIL HAS BEEN SENT TO TO YOUR EMAIL ID FOR VERIFICATION<br><br><br><br><br><br><br></b></Big>";
+                            Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml(msg), Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
                         }
                     }else{
                         if(task.getException() instanceof FirebaseAuthInvalidUserException){
