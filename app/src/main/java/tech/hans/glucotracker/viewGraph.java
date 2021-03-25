@@ -46,7 +46,6 @@ public class viewGraph extends AppCompatActivity {
     FirebaseUser firebaseUser;
     String regNo;
     FirebaseFirestore firebaseFirestore;
-    Boolean isArrayCreated1 = false;
     ArrayList<Entry> datavalsBeforeMeal = null;
     ArrayList<Entry> datavalsAfterMeal = null;
 
@@ -75,30 +74,18 @@ public class viewGraph extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            Log.i("hey", "hey");
-                            isArrayCreated1 = true;
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 Timestamp timestamp = (Timestamp) document.getData().get("date");
                                 assert timestamp != null;
                                 Date date = timestamp.toDate();
                                 date.getTime();
-                                //  datavals1.add(new Entry(((date.getTime())/1000),(Float) document.get("glucoReadingEntered")));
-
-                                String showDate = date.toString();
-                                String finDate = showDate.substring(4, 11) + showDate.substring(showDate.length() - 5, showDate.length());
-                                Log.i("date", finDate);
-                                Log.i("gluco", document.get("glucoReadingEntered").toString() + " mg/dL");
                                 Long lg = Long.valueOf(date.getTime() / 1000);
                                 float fg = (float) lg;
                                 float reads = Float.parseFloat(Objects.requireNonNull(document.get("glucoReadingEntered")).toString());
                                 if (document.get("interval").toString().equals("Before Meal")) {
                                     datavalsBeforeMeal.add(new Entry(fg, reads));
-
-                                    Log.i("bm", finDate + document.get("glucoReadingEntered").toString());
-
                                 } else {
                                     datavalsAfterMeal.add(new Entry(fg, reads));
-                                    Log.i("AAm", finDate + document.get("glucoReadingEntered").toString());
                                 }
                             }
 
@@ -107,7 +94,6 @@ public class viewGraph extends AppCompatActivity {
                             mpLineChart.setTouchEnabled(true);
                             mpLineChart.setScaleEnabled(true);
                             mpLineChart.setDragEnabled(true);
-
 
                             LineDataSet lineDataSet1 = new LineDataSet(datavalsBeforeMeal, "BeforeMeal");
                             lineDataSet1.setColor(Color.parseColor("#FF0000"));
@@ -134,7 +120,6 @@ public class viewGraph extends AppCompatActivity {
                             pgressBar.setVisibility(View.INVISIBLE);
                             mpLineChart.setVisibility(View.VISIBLE);
                         } else {
-                            isArrayCreated1 = false;
                             Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR\nPLEASE TRY AGAIN LATTER", Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
