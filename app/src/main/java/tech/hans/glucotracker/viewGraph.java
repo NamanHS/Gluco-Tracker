@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -21,6 +23,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -50,6 +53,7 @@ public class viewGraph extends AppCompatActivity {
     ArrayList<Entry> datavalsAfterMeal = null;
 
     ProgressBar pgressBar;
+    TextView graphmsg;
 
 
     @Override
@@ -58,6 +62,8 @@ public class viewGraph extends AppCompatActivity {
         setContentView(R.layout.activity_view_graph);
 
         pgressBar = (ProgressBar) findViewById(R.id.pgressBar);
+        graphmsg = (TextView) findViewById(R.id.graphmsg);
+        graphmsg.setVisibility(View.INVISIBLE);
 
 
         //fetch reg No of user for query
@@ -95,6 +101,49 @@ public class viewGraph extends AppCompatActivity {
                             mpLineChart.setScaleEnabled(true);
                             mpLineChart.setDragEnabled(true);
 
+                            //before meal max and min limit lines
+
+                            LimitLine bfmax = new LimitLine(130f,"Before Meal Maximum");
+                            bfmax.setLineWidth(4f);
+                            bfmax.enableDashedLine(10f,10f,0f);
+                            bfmax.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+                            bfmax.setTextSize(10f);
+                            bfmax.setTextColor(Color.parseColor("#0000FF"));
+
+                            LimitLine bfmin = new LimitLine(100f,"Before Meal Minimum");
+                            bfmin.setLineWidth(4f);
+                            bfmin.enableDashedLine(10f,10f,0f);
+                            bfmin.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+                            bfmin.setTextSize(10f);
+                            bfmin.setTextColor(Color.parseColor("#0000FF"));
+
+                            //after meal
+
+                            LimitLine afmax = new LimitLine(180f,"After Meal Maximum");
+                            afmax.setLineWidth(4f);
+                            afmax.setLineColor(Color.parseColor("#000000"));
+                            afmax.enableDashedLine(10f,10f,0f);
+                            afmax.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+                            afmax.setTextSize(10f);
+                            afmax.setTextColor(Color.parseColor("#0000FF"));
+
+
+                            YAxis leftAxis = mpLineChart.getAxisLeft();
+                            leftAxis.setAxisMinimum(10f);
+                            leftAxis.removeAllLimitLines();
+                            leftAxis.addLimitLine(bfmax);
+                            leftAxis.addLimitLine(bfmin);
+                            leftAxis.addLimitLine(afmax);
+
+
+
+
+                            //After meal max and min limit lines
+
+                           // LimitLine afmax = new LimitLine()
+
+
+
                             LineDataSet lineDataSet1 = new LineDataSet(datavalsBeforeMeal, "BeforeMeal");
                             lineDataSet1.setColor(Color.parseColor("#FF0000"));
                             lineDataSet1.setCircleRadius(7);
@@ -114,11 +163,22 @@ public class viewGraph extends AppCompatActivity {
 
                             LineData data = new LineData(dataSets);
                             mpLineChart.setData(data);
-//                            mpLineChart.setVisibleXRangeMaximum(20);
-//                            mpLineChart.moveViewToX(10);
-                            mpLineChart.invalidate();
-                            pgressBar.setVisibility(View.INVISIBLE);
-                            mpLineChart.setVisibility(View.VISIBLE);
+                            mpLineChart.getDescription().setEnabled(false);
+
+
+
+                            if(((data.getXMax()-data.getXMin())>0)){
+                                mpLineChart.invalidate();
+                                Log.i("hello",Integer.toString(data.getEntryCount()));
+                                mpLineChart.setVisibleXRangeMaximum((data.getXMax()-data.getXMin())/4);
+                                pgressBar.setVisibility(View.INVISIBLE);
+                                mpLineChart.setVisibility(View.VISIBLE);
+                            }else{
+                                pgressBar.setVisibility(View.INVISIBLE);
+                                graphmsg.setVisibility(View.VISIBLE);
+                            }
+
+
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR\nPLEASE TRY AGAIN LATTER", Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
