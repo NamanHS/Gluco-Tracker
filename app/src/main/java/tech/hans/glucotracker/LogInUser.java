@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
@@ -22,7 +21,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LogInUser extends AppCompatActivity implements View.OnClickListener {
     
@@ -111,7 +109,7 @@ public class LogInUser extends AppCompatActivity implements View.OnClickListener
                             finishAffinity();
                         }else{
                             loginLoading.setVisibility(View.GONE);
-                            String msg = "<Big><b><br><br><br><br><br><br><br><br><br><br>PLEASE VERIFY YOUR EMAIL ID<br><br>EMAIL HAS BEEN SENT TO TO YOUR EMAIL ID FOR VERIFICATION<br><br><br><br><br><br><br></b></Big>";
+                            String msg = "<Big><b><br><br><br><br><br><br><br><br><br><br>PLEASE VERIFY YOUR EMAIL ID<br><br>EMAIL HAS BEEN SENT TO YOUR EMAIL ID FOR VERIFICATION<br><br><br><br><br><br><br></b></Big>";
                             Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml(msg), Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
