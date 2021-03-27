@@ -11,7 +11,6 @@ import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -58,8 +57,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
     private EditText readingEntered, optionalNotes;
     private RadioGroup interval;
 
-    String regNoSent,glucoSent,intervalSent,notesSent,activityName;
-    long dateSent;
+    String activityName;
     int glucoReadingEntered;
     String mealInterval,mealOptionalNotes;
     Date date;
@@ -121,20 +119,13 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
             calendar.setTime(toUpdateGluco.getDate());
             date = calendar.getTime();
             dateSelected.setText(currentDate);
-            Log.i("heyy",currentDate.toString());
-
-
-
             flag = true;
 
         }
 
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         assert firebaseUser != null;
         regNo = firebaseUser.getUid().toString();
-
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://gluco-tracker-app-default-rtdb.firebaseio.com/");
         DatabaseReference myRef = database.getReference("UserData");
@@ -198,8 +189,6 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
-
-
     }
 
     @Override
@@ -352,7 +341,6 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
             }
 
             if (outOfRange) {
-                    Log.i("checkpoint","3");
                     JavaMailAPI sendToDoctor = new JavaMailAPI(this, doctor_Email, alertmsg, message, alert_email, alert_password);
                     sendToDoctor.execute();
                     JavaMailAPI sendToFamily = new JavaMailAPI(this, family_Email, alertmsg, message, alert_email, alert_password);
@@ -364,8 +352,6 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
             toast.show();
             enterReading.setClickable(true);
         }
-
-
 
     }
 }

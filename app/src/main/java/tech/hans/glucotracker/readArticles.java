@@ -25,8 +25,6 @@ import com.google.firebase.firestore.Query;
 
 public class readArticles extends AppCompatActivity {
 
-    private GlucoReading temp;
-    private String tempID;
     RecyclerView firestoreList;
     FirebaseFirestore firebaseFirestore;
     FirestoreRecyclerAdapter<Articles, ArticlesViewHolder> adapter;
@@ -105,13 +103,7 @@ public class readArticles extends AppCompatActivity {
                         })
                         .create()
                         .show();
-
-
-                //
-
-
             }
-
         }).attachToRecyclerView(firestoreList);
 
     }
@@ -123,15 +115,8 @@ public class readArticles extends AppCompatActivity {
             public ArticlesViewHolder(@NonNull View itemView) {
                 super(itemView);
                 articleTitle = itemView.findViewById(R.id.articleTitle);
-
-
             }
         }
-
-
-
-
-
 
     public void onStop() {
         super.onStop();

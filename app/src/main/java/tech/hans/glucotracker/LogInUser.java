@@ -141,10 +141,6 @@ public class LogInUser extends AppCompatActivity implements View.OnClickListener
                }
            });
 
-
-
-        //finishAffinity();
-        //startActivity(new Intent(this,HomePage.class));
     }
 
 }

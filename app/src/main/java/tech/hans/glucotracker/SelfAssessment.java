@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
+
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -222,7 +222,6 @@ public class SelfAssessment extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         output = response.getString("class");
-                        Log.i("success--->",output);
                         Intent intent = new Intent(getApplicationContext(),Resulter.class);
                         intent.putExtra("output",output);
                         intent.putExtra("count",count);

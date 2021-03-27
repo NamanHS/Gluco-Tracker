@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 
 
 public class WebArticles extends AppCompatActivity {
-    ProgressBar prog;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -25,6 +24,7 @@ public class WebArticles extends AppCompatActivity {
         webber.getSettings().setUseWideViewPort(true);
         webber.getSettings().setJavaScriptEnabled(true);
         webber.setWebViewClient(new WebViewClient());
+        assert url != null;
         webber.loadUrl(url);
 
     }

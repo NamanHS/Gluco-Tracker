@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/monda_bold"
-        android:text="Application stores your data on server to make you use application optimally.\n\n Application does not sell your data to 3rd parties nor make use of your data in any other ways."
+        android:text="Application stores your data on server to make you use application optimally.\n\nApplication does not sell your data to 3rd parties nor make use of your data in any other ways."
         android:textColor="#80A2FB"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"

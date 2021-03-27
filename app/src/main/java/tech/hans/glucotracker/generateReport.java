@@ -213,13 +213,6 @@ public class generateReport extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
-
-
-
     }
 
     public void generateReport(View v){

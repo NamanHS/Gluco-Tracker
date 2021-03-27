@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 public class Resulter extends AppCompatActivity {
 
-
-
-
     TextView outputText;
 
     @Override
@@ -26,10 +23,7 @@ public class Resulter extends AppCompatActivity {
         int count = intent.getIntExtra("count",0);
         String tag = intent.getStringExtra("tag");
 
-
-
         if(!tag.equals("aged")){
-
 
             assert output != null;
             if (output.equals("Positive")) {

@@ -193,11 +193,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
-
-        //finishAffinity();
-        //startActivity(new Intent(this,HomePage.class));
-
     }
-
 
 }

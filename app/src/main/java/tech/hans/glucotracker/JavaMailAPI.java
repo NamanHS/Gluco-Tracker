@@ -14,13 +14,6 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
-    //Add those line in dependencies
-    //implementation files('libs/activation.jar')
-    //implementation files('libs/additionnal.jar')
-    //implementation files('libs/mail.jar')
-
-    //Need INTERNET permission
-
     private String mEmail;
     private String mSubject;
     private String mMessage;

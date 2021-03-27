@@ -208,14 +208,9 @@ public class viewReading extends AppCompatActivity {
                         .create()
                         .show();
 
-
-                //
-
-
             }
 
         }).attachToRecyclerView(firestoreList);
-
 
     }
 
@@ -244,8 +239,5 @@ public class viewReading extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         adapter.startListening();
     }
-
-
-
 
 }
