@@ -45,8 +45,23 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         switch (item.getItemId()){
             case R.id.logOutOfSystem:
                 logOutOfSystem();
+                break;
+            case R.id.aboutApp:
+                aboutApp();
+                break;
         }
         return true;
+    }
+
+    private void aboutApp() {
+        if(haveNetworkConnection()){
+            startActivity(new Intent(this,AboutApp.class));
+        }else {
+            Toast toast = Toast.makeText(getApplicationContext(), "YOU ARE NOT CONNECTED TO INTERNET\nCONNECT TO INTERNET TO USE APPLICATION", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
+
     }
 
     private void logOutOfSystem() {

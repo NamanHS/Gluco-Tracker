@@ -126,14 +126,9 @@ public class viewGraph extends AppCompatActivity {
                             leftAxis.addLimitLine(bfmin);
                             leftAxis.addLimitLine(afmax);
 
-
-
-
                             //After meal max and min limit lines
 
-                           // LimitLine afmax = new LimitLine()
-
-
+                           //
 
                             LineDataSet lineDataSet1 = new LineDataSet(datavalsBeforeMeal, "BeforeMeal");
                             lineDataSet1.setColor(Color.parseColor("#FF0000"));
@@ -156,20 +151,20 @@ public class viewGraph extends AppCompatActivity {
                             mpLineChart.setData(data);
                             mpLineChart.getDescription().setEnabled(false);
 
-
-
-                            if(((data.getXMax()-data.getXMin())>0)){
+                            if(data.getEntryCount()>10){
                                 mpLineChart.invalidate();
                                 Log.i("hello",Integer.toString(data.getEntryCount()));
-                                mpLineChart.setVisibleXRangeMaximum((data.getXMax()-data.getXMin())/4);
+                                if(data.getEntryCount()>=18 && data.getEntryCount()<30){
+                                    mpLineChart.setVisibleXRangeMaximum((data.getXMax()-data.getXMin())/2);
+                                }else if(data.getEntryCount()>=30){
+                                    mpLineChart.setVisibleXRangeMaximum((data.getXMax()-data.getXMin())/4);
+                                }
                                 pgressBar.setVisibility(View.INVISIBLE);
                                 mpLineChart.setVisibility(View.VISIBLE);
                             }else{
                                 pgressBar.setVisibility(View.INVISIBLE);
                                 graphmsg.setVisibility(View.VISIBLE);
                             }
-
-
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR\nPLEASE TRY AGAIN LATTER", Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);

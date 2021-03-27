@@ -215,12 +215,16 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
 
 
     public void enterReadingIntoApplication(View v) {
+
+        enterReading.setClickable(false);
         //gluco reading
         if (readingEntered.getText().toString().isEmpty()) {
             readingEntered.setError("Please Enter Glucose Reading");
+            enterReading.setClickable(true);
             return;
         } else if (Integer.parseInt(readingEntered.getText().toString()) < 10 || Integer.parseInt(readingEntered.getText().toString()) > 900) {
             readingEntered.setError("enter valid reading");
+            enterReading.setClickable(true);
             return;
         }else{
             glucoReadingEntered = Integer.parseInt(readingEntered.getText().toString());
@@ -229,6 +233,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
         //meal interval
         if(interval.getCheckedRadioButtonId() == -1){
             Toast.makeText(getApplicationContext(),"Please select INTERVAL\nBefore Meal or After Meal",Toast.LENGTH_SHORT).show();
+            enterReading.setClickable(true);
             return;
         }else if(interval.getCheckedRadioButtonId() == R.id.beforeMeal){
             mealInterval = "Before Meal";
@@ -277,6 +282,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         mp.start();
                         toast.show();
+                        enterReading.setClickable(true);
                         Intent intent = new Intent(enterReading.this, viewReading.class);
                         intent.putExtra("activityName","updated");
                         startActivity(intent);
@@ -293,6 +299,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
                                 toast.setGravity(Gravity.CENTER, 0, 0);
                                 mp.start();
                                 toast.show();
+                                enterReading.setClickable(true);
                                 Intent intent = new Intent(enterReading.this, viewReading.class);
                                 startActivity(intent);
                                 finish();
@@ -304,6 +311,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
                                 Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR", Toast.LENGTH_SHORT);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
                                 toast.show();
+                                enterReading.setClickable(true);
                             }
                         });
             }
@@ -354,6 +362,7 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
             Toast toast = Toast.makeText(getApplicationContext(), "YOU ARE NOT CONNECTED TO INTERNET", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
+            enterReading.setClickable(true);
         }
 
 

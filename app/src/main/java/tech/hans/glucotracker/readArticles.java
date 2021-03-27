@@ -27,8 +27,8 @@ public class readArticles extends AppCompatActivity {
 
     private GlucoReading temp;
     private String tempID;
-    private RecyclerView firestoreList;
-    private FirebaseFirestore firebaseFirestore;
+    RecyclerView firestoreList;
+    FirebaseFirestore firebaseFirestore;
     FirestoreRecyclerAdapter<Articles, ArticlesViewHolder> adapter;
 
     @Override

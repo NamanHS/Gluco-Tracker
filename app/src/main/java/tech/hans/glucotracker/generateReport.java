@@ -146,62 +146,71 @@ public class generateReport extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot document : task.getResult()){
+                        if(task.isSuccessful()) {
+                            if (task.getResult().isEmpty()) {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast toast = Toast.makeText(getApplicationContext(), "INSUFFICIENT DATA TO CREATE REPORT", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                            } else {
 
 
-                                Timestamp timestamp = (Timestamp) document.getData().get("date");
+                                for (QueryDocumentSnapshot document : task.getResult()) {
 
 
+                                    Timestamp timestamp = (Timestamp) document.getData().get("date");
 
-                                assert timestamp != null;
-                                Date date = timestamp.toDate();
-                                String showDate = date.toString();
-                                String finDate = showDate.substring(4,11) + showDate.substring(showDate.length()-5,showDate.length());
-                                if(!isFirstEntry){
-                                    if(!finDate.equals(dateCompare)){
-                                        table.addCell("\n");
-                                        table.addCell("\n");
-                                        table.addCell("\n");
-                                        table.addCell("\n");
+
+                                    assert timestamp != null;
+                                    Date date = timestamp.toDate();
+                                    String showDate = date.toString();
+                                    String finDate = showDate.substring(4, 11) + showDate.substring(showDate.length() - 5, showDate.length());
+                                    if (!isFirstEntry) {
+                                        if (!finDate.equals(dateCompare)) {
+                                            table.addCell("\n");
+                                            table.addCell("\n");
+                                            table.addCell("\n");
+                                            table.addCell("\n");
+                                        }
                                     }
-                                }
 
-                                dateCompare = finDate;
-                                table.addCell(String.valueOf(finDate));
-                                table.addCell(document.get("interval").toString());
-                                table.addCell(document.get("glucoReadingEntered").toString() + " mg/dL");
-                                if(document.get("optionalNotes").toString().equals("No Notes Added")){
-                                    table.addCell("");
-                                }else{
-                                    table.addCell(document.get("optionalNotes").toString());
+                                    dateCompare = finDate;
+                                    table.addCell(String.valueOf(finDate));
+                                    table.addCell(document.get("interval").toString());
+                                    table.addCell(document.get("glucoReadingEntered").toString() + " mg/dL");
+                                    if (document.get("optionalNotes").toString().equals("No Notes Added")) {
+                                        table.addCell("");
+                                    } else {
+                                        table.addCell(document.get("optionalNotes").toString());
+                                    }
+                                    isFirstEntry = false;
+
                                 }
-                                isFirstEntry = false;
+                                documentFile.add(paragraph);
+                                documentFile.add(table);
+                                documentFile.close();
+
+                                mp.start();
+                                new AlertDialog.Builder(generateReport.this).setCancelable(false)
+                                        .setTitle("PDF REPORT GENERATED")
+                                        .setMessage(namedReport.getText().toString() + ".pdf is Downloaded,\nYou will find this in your Downloads")
+                                        .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            }
+                                        }).create().show();
+
+                                progressBar.setVisibility(View.INVISIBLE);
 
                             }
-                            documentFile.add(paragraph);
-                            documentFile.add(table);
-                            documentFile.close();
-
-                            mp.start();
-                            new AlertDialog.Builder(generateReport.this).setCancelable(false)
-                                    .setTitle("PDF REPORT GENERATED")
-                                    .setMessage(namedReport.getText().toString()+".pdf is Downloaded,\nYou will find this in your Downloads")
-                                    .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                        }
-                                    }).create().show();
-
-                            progressBar.setVisibility(View.INVISIBLE);
-
                         }else{
-                            progressBar.setVisibility(View.INVISIBLE);
-                            Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR\nPlease try again latter", Toast.LENGTH_SHORT);
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            toast.show();
-                        }
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast toast = Toast.makeText(getApplicationContext(), "SERVER ERROR\nPlease try again latter", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                            }
+
                     }
                 });
 
