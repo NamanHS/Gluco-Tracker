@@ -169,17 +169,29 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             if(activityName.equals("enterReading")){
                 Intent intent = new Intent(HomePage.this,enterReading.class);
                 intent.putExtra("activityName","HomePage");
+                enterReading.setClickable(false);
                 startActivity(new Intent(this,enterReading.class));
+                enterReading.setClickable(true);
             }else if(activityName.equals("viewReading")){
+                viewReading.setClickable(false);
                 startActivity(new Intent(this,viewReading.class));
+                viewReading.setClickable(true);
             }else if(activityName.equals("viewGraph")){
+                viewGraph.setClickable(false);
                 startActivity(new Intent(this,viewGraph.class));
+                viewGraph.setClickable(true);
             }else if(activityName.equals("generateReport")){
+                generateReport.setClickable(false);
                 startActivity(new Intent(this,generateReport.class));
+                generateReport.setClickable(true);
             }else if(activityName.equals("meditateView")){
+                meditateView.setClickable(false);
                 startActivity(new Intent(this,meditateView.class));
+                meditateView.setClickable(true);
             }else if(activityName.equals("readArticles")){
+                readArticles.setClickable(false);
                 startActivity(new Intent(this,readArticles.class));
+                readArticles.setClickable(true);
             }
 
         }else{
@@ -188,9 +200,5 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             toast.show();
         }
     }
-
-
-
-
 
 }

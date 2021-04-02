@@ -1,229 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RegisterUser">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="YOUR NAME"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintBottom_toTopOf="@+id/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RegisterUser">
 
-    <EditText
-        android:id="@+id/famEmail"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fillup"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/docEmail" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="YOUR NAME"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Doctor's Email Address"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintBottom_toTopOf="@+id/docEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Please Select Your Date Of Birth"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/dob"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/docEmail"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fillup"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        <ImageView
+            android:id="@+id/calenderIcon2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/dob"
+            app:layout_constraintStart_toEndOf="@+id/textView22"
+            app:srcCompat="@drawable/calendaricon" />
 
-    <EditText
-        android:id="@+id/passw"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fillup"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textPassword"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/famEmail" />
+        <EditText
+            android:id="@+id/famEmail"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docEmail" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Already a User?"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp" />
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Doctor's Email Address"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/docEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/cnfpassw"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fillup"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textPassword"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passw" />
+        <EditText
+            android:id="@+id/docEmail"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/fillup"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        <EditText
+            android:id="@+id/passw"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textPassword"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/famEmail" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Family's Email Address"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintBottom_toTopOf="@+id/famEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Already a User?"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Confirm Password"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintBottom_toTopOf="@+id/cnfpassw"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/cnfpassw"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textPassword"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passw" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Set Password"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintBottom_toTopOf="@+id/passw"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
-    <Button
-        android:id="@+id/signUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/mybutton"
-        android:text="SIGN UP"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cnfpassw" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Family's Email Address"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/famEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/fillup"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Confirm Password"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/cnfpassw"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Your Email Address"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Set Password"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/passw"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/logIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="LOG IN"
-        android:textColor="@color/colorAccent"
-        app:fontFamily="@font/monda_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/signUp" />
+        <Button
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/mybutton"
+            android:text="SIGN UP"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cnfpassw" />
 
-    <ProgressBar
-        android:id="@+id/loading"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/dob"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/fillup"
+            android:ems="10"
+            android:enabled="false"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Your Email Address"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintBottom_toTopOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/logIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="LOG IN"
+            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/monda_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/signUp" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

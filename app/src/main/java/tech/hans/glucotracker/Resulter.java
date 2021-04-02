@@ -54,5 +54,4 @@ public class Resulter extends AppCompatActivity {
         finishAffinity();
     }
 
-
 }

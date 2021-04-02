@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 
+
 import android.media.MediaPlayer;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -42,8 +45,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.time.LocalDate;
+
+import java.time.Period;
+
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+
 
 public class generateReport extends AppCompatActivity {
 
@@ -59,6 +71,10 @@ public class generateReport extends AppCompatActivity {
     String dateCompare = "";
     boolean isFirstEntry = true;
     String greetName,email;
+    Long DOB;
+    int years;
+
+
 
     MediaPlayer mp;
     ProgressBar progressBar;
@@ -83,11 +99,55 @@ public class generateReport extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        myRef.child(regNo).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+//        myRef.child(regNo).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                greetName = Objects.requireNonNull(dataSnapshot.getValue()).toString();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+
+        myRef.child(regNo).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                greetName = Objects.requireNonNull(dataSnapshot.getValue()).toString();
+                UserData userData = dataSnapshot.getValue(UserData.class);
+                assert userData != null;
+                greetName = userData.getName().toString();
+                DOB = userData.getDob();
+                email = userData.getEmail();
 
+                Date d1 = new Date(DOB);
+                Date d2 = new Date();
+
+                Date startDate = d1;// Set start date
+                        Date endDate   = d2;// Set end date
+
+                long duration  = endDate.getTime() - startDate.getTime();
+
+                long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+                long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+                long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+                long diffInDays = TimeUnit.MILLISECONDS.toDays(duration);
+
+                years = Period.between(convertToLocalDateViaInstant(d1), convertToLocalDateViaInstant(d2)).getYears();
+
+
+
+
+                //                Date d2 = new Date();
+//                Date d1 = new Date(DOB.getTime());
+//                TimeUnit.MILLISECONDS.toDays(d1.getTime() - d2.getTime());
+//                String op = new String(String.valueOf(new Date(TimeUnit.MILLISECONDS.toDays(d1.getTime() - d2.getTime())).getYear()));
+
+
+                String value = Long.toString(DOB);
+                Log.i("hey",Integer.toString(years)+"years\n\n"+value+greetName+email);
             }
 
             @Override
@@ -96,18 +156,19 @@ public class generateReport extends AppCompatActivity {
             }
         });
 
-        myRef.child(regNo).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                email = dataSnapshot.getValue().toString();
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        myRef.child(regNo).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                email = dataSnapshot.getValue().toString();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
     }
@@ -124,13 +185,32 @@ public class generateReport extends AppCompatActivity {
 
         final Paragraph paragraph = new Paragraph();
 
-        Text text1 = new Text("PATIENT NAME : ").setBold();
-        Text text2 = new Text(greetName+ "\n").setBold();
+        String currentDate = DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+        Text text7 = new Text("PDF generated on "+currentDate+"\n\n");
+        paragraph.add(text7);
+
+        Text intro = new Text("PATIENT DETAILS\n").setBold().setFontSize(20).setUnderline();
+        paragraph.add(intro);
+
+        Text text1 = new Text("NAME : ").setBold();
+        Text text2 = new Text(greetName+ "\n");
         paragraph.add(text1).add(text2);
 
-        Text text3 = new Text("PATIENT EMAIL ID : ").setBold();
+        Text text5 = new Text("AGE : ").setBold();
+        Text text6 = new Text(years+" Years"+" [ As on " + currentDate + " ]\n");
+
+        paragraph.add(text5).add(text6);
+
+        Text text3 = new Text("EMAIL ID : ").setBold();
         Text text4 = new Text(email + "\n\n\n").setUnderline();
         paragraph.add(text3).add(text4);
+
+
+
+        Text tableIntro = new Text("BLOOD GLUCOSE LEVEL HISTORY\n").setBold().setFontSize(20);
+        paragraph.add(tableIntro);
+
+
 
 
 
@@ -230,6 +310,10 @@ public class generateReport extends AppCompatActivity {
         }
     }
 
-
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
 
 }
