@@ -1,7 +1,5 @@
 package tech.hans.glucotracker;
 
-import java.util.Date;
-
 public class UserData {
     private String name,email,doc_email,fam_email;
     private Long dob;

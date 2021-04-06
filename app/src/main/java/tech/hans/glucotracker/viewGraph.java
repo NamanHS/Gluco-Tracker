@@ -126,6 +126,9 @@ public class viewGraph extends AppCompatActivity {
                             leftAxis.addLimitLine(bfmin);
                             leftAxis.addLimitLine(afmax);
 
+                            YAxis yAxisRight = mpLineChart.getAxisRight();
+                            yAxisRight.setAxisMinimum(10f);
+
                             LineDataSet lineDataSet1 = new LineDataSet(datavalsBeforeMeal, "BeforeMeal");
                             lineDataSet1.setColor(Color.parseColor("#FF0000"));
                             lineDataSet1.setCircleRadius(7);

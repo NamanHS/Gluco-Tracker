@@ -12,7 +12,7 @@ import android.media.MediaPlayer;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
+
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -56,9 +56,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class generateReport extends AppCompatActivity {
-
 
     EditText namedReport;
     FirebaseUser firebaseUser;
@@ -67,13 +65,11 @@ public class generateReport extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseDatabase database;
 
-
     String dateCompare = "";
     boolean isFirstEntry = true;
     String greetName,email;
     Long DOB;
     int years;
-
 
 
     MediaPlayer mp;
@@ -99,20 +95,6 @@ public class generateReport extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-//        myRef.child(regNo).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                greetName = Objects.requireNonNull(dataSnapshot.getValue()).toString();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
         myRef.child(regNo).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -126,7 +108,7 @@ public class generateReport extends AppCompatActivity {
                 Date d2 = new Date();
 
                 Date startDate = d1;// Set start date
-                        Date endDate   = d2;// Set end date
+                Date endDate   = d2;// Set end date
 
                 long duration  = endDate.getTime() - startDate.getTime();
 
@@ -137,17 +119,7 @@ public class generateReport extends AppCompatActivity {
 
                 years = Period.between(convertToLocalDateViaInstant(d1), convertToLocalDateViaInstant(d2)).getYears();
 
-
-
-
-                //                Date d2 = new Date();
-//                Date d1 = new Date(DOB.getTime());
-//                TimeUnit.MILLISECONDS.toDays(d1.getTime() - d2.getTime());
-//                String op = new String(String.valueOf(new Date(TimeUnit.MILLISECONDS.toDays(d1.getTime() - d2.getTime())).getYear()));
-
-
                 String value = Long.toString(DOB);
-                Log.i("hey",Integer.toString(years)+"years\n\n"+value+greetName+email);
             }
 
             @Override
@@ -155,20 +127,6 @@ public class generateReport extends AppCompatActivity {
 
             }
         });
-
-
-//        myRef.child(regNo).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                email = dataSnapshot.getValue().toString();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
 
     }
@@ -205,14 +163,8 @@ public class generateReport extends AppCompatActivity {
         Text text4 = new Text(email + "\n\n\n").setUnderline();
         paragraph.add(text3).add(text4);
 
-
-
         Text tableIntro = new Text("BLOOD GLUCOSE LEVEL HISTORY\n").setBold().setFontSize(20);
         paragraph.add(tableIntro);
-
-
-
-
 
         float[] coloumnWidth = {100f,100f,100f,100f};
         final Table table = new Table(coloumnWidth);

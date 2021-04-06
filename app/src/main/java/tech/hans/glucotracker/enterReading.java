@@ -131,40 +131,25 @@ public class enterReading extends AppCompatActivity implements DatePickerDialog.
         DatabaseReference myRef = database.getReference("UserData");
         DatabaseReference myRef2 = database.getReference("Config");
 
-            //  fetch doctor email id
-            myRef.child(regNo).child("doc_email").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    doctor_Email = dataSnapshot.getValue().toString();
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-            // fetching user / patient name
-            myRef.child(regNo).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    patientName = dataSnapshot.getValue().toString();
-                }
+        myRef.child(regNo).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserData userData = dataSnapshot.getValue(UserData.class);
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
+                doctor_Email = userData.getDoc_email();
+                patientName = userData.getName();
+                family_Email = userData.getFam_email();
 
-            //  fetch family email id
-            myRef.child(regNo).child("fam_email").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    family_Email = dataSnapshot.getValue().toString();
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
             //fetch email and password for sending email upon the out of range values
             //email fetching
